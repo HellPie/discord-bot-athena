@@ -1,0 +1,35 @@
+{
+	"name": "discord-bot-athena",
+	"version": "0.1.0",
+	"description": "Multipurpose bot for Discord made in NodeJS.",
+	"author": "Diego Rossi (HellPie#9429)",
+	"license": "Apache-2.0",
+	"main": "index.js",
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/HellPie/discord-bot-athena.git"
+	},
+	"keywords": [
+		"node-js",
+		"discord",
+		"bot",
+		"es8"
+	],
+	"bugs": {
+		"url": "https://github.com/HellPie/discord-bot-athena/issues"
+	},
+	"homepage": "https://github.com/HellPie/discord-bot-athena#readme",
+	"false": {},
+	"dependencies": {
+		"express": "^4.15.3",
+		"express-session": "^1.15.3",
+		"komada": "github:dirigeants/komada#indev",
+		"passport": "^0.3.2",
+		"passport-discord": "^0.1.2",
+		"uws": "^8.14.0"
+	}
+}
