@@ -3,19 +3,16 @@ const Session = require("express-session");
 const Passport = require("passport");
 const {Strategy} = require("passport-discord");
 
+const Config = require("../athena_config.json").webapp;
+
 const SCOPES = [ "identify", "email", "guilds", "connections" ];
 const WebApp = Express();
 
-exports.init = () => {
+exports.init = (client) => {
 	Passport.serializeUser((user, done) => done(null, user));
 	Passport.deserializeUser((obj, done) => done(null, obj));
 
-	Passport.use(new Strategy({
-		clientID: "331474748917940235",
-		clientSecret: "_NnzwvSd_9BcL7xt4l2OawwCq3g2_k65",
-		callbackURL: "http://localhost:5000/callback",
-		scope: SCOPES
-	}, (accessToken, refreshToken, profile, done) => process.nextTick(() => { return done(null, profile); })));
+	Passport.use(new Strategy(Config, (accessToken, refreshToken, profile, done) => process.nextTick(() => { return done(null, profile); })));
 
 	WebApp.use(Session({
 		secret: "keyboard cat",
@@ -42,7 +39,7 @@ exports.init = () => {
 	});
 
 	WebApp.listen(5000, (err) => {
-		if(err) return console.error(err);
-		return console.log("Listening at http://localhost:5000/");
+		if(err) return client.emit("error", err);
+		return client.emit("log", `Listening on ${Config.callbackURL}`);
 	});
 };
