@@ -5,12 +5,12 @@ const permStructure = [
 	{
 		// Level 0 - Always True (@everyone)
 		check: () => true,
-		break: false
+		break: true
 	},
 	{
 		// Level 1 - Always False
 		check: () => false,
-		break: false
+		break: true
 	},
 	{
 		// Level 2 -
@@ -18,8 +18,10 @@ const permStructure = [
 		break: false
 	},
 	{
-		// Level 3 -
-		check: () => false,
+		// Level 3 - Private Messaging Channel Member
+		check: (client, msg) => {
+			return !msg.guild && msg.channel.owner;
+		},
 		break: false
 	},
 	{
@@ -95,5 +97,5 @@ const komada = new Komada.Client({
 
 */
 
-// komada.login(AthenaConfig.discord.token);
-komada.login("MzE5MDcxMzEwMDI4NDcyMzIw.DDpj0g.ZfKuu-1n5iz0V9lWoqnhBPRwnTA");
+komada.login(AthenaConfig.discord.token);
+// komada.login("MzE5MDcxMzEwMDI4NDcyMzIw.DDpj0g.ZfKuu-1n5iz0V9lWoqnhBPRwnTA");

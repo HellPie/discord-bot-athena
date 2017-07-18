@@ -21,7 +21,7 @@
 
 		// Best Practices
 		"class-methods-use-this": "warn",
-		"complexity": ["warn", 10],
+		"complexity": ["warn", 50],
 		"consistent-return": "error",
 		"curly": ["error", "multi-line", "consistent"],
 		"no-alert": "error",
@@ -38,7 +38,6 @@
 			"outerIIFEBody": 0,
 			"MemberExpression": 1
 		}],
-		"object-curly-newline": ["error", {"minProperties": 2}],
 		"object-property-newline": ["error", {"allowMultiplePropertiesPerLine": true}],
 		"keyword-spacing": ["error", {"overrides": {
 			"if": {"after": false},

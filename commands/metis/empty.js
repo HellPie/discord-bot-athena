@@ -5,21 +5,11 @@
 
 const { inspect } = require("util");
 
-exports.conf = {
-	enabled: true,
-	runIn: ["text"],
-	aliases: [],
-	permLevel: 6, // Used to be 3 - Admins in the default permStructure. Updated to 6 - Server Co-Owners
-	botPerms: [],
-	requiredFuncs: [],
-	requiredSettings: [],
-};
-
-exports.help = {
-	name: "conf",
-	description: "Define per-server configuration.",
-	usage: "<set|get|reset|list|remove> [key:string] [value:string]",
-	usageDelim: " ",
+const handle = (value) => {
+	if(typeof value !== "object") return value;
+	if(value === null) return "Not set";
+	if(value instanceof Array) return value[0] ? `[ ${value.join(" | ")} ]` : "None";
+	return value;
 };
 
 exports.run = async (client, msg, [action, key, ...value]) => {
@@ -73,9 +63,19 @@ exports.run = async (client, msg, [action, key, ...value]) => {
 	return null;
 };
 
-const handle = (value) => {
-	if(typeof value !== "object") return value;
-	if(value === null) return "Not set";
-	if(value instanceof Array) return value[0] ? `[ ${value.join(" | ")} ]` : "None";
-	return value;
+exports.conf = {
+	enabled: false,
+	runIn: ["text"],
+	aliases: [],
+	permLevel: 6, // Used to be 3 - Admins in the default permStructure. Updated to 6 - Server Co-Owners
+	botPerms: [],
+	requiredFuncs: [],
+	requiredSettings: [],
+};
+
+exports.help = {
+	name: "conf",
+	description: "Define per-server configuration.",
+	usage: "<set|get|reset|list|remove> [key:string] [value:string]",
+	usageDelim: " ",
 };

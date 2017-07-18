@@ -25,6 +25,7 @@
 	"homepage": "https://github.com/HellPie/discord-bot-athena#readme",
 	"false": {},
 	"dependencies": {
+		"common-tags": "^1.4.0",
 		"express": "^4.15.3",
 		"express-session": "^1.15.3",
 		"komada": "github:dirigeants/komada#indev",

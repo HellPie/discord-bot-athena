@@ -5,7 +5,7 @@ const {Strategy} = require("passport-discord");
 
 const Config = require("../athena_config.json").webapp;
 
-const SCOPES = [ "identify", "email", "guilds", "connections" ];
+const SCOPES = ["identify", "email", "guilds", "connections"];
 const WebApp = Express();
 
 exports.init = (client) => {
@@ -23,8 +23,10 @@ exports.init = (client) => {
 	WebApp.use(Passport.initialize());
 	WebApp.use(Passport.session());
 
-	WebApp.get("/", Passport.authenticate("discord", { scope: SCOPES }), (req, res) => {});
-	WebApp.get("/callback", Passport.authenticate("discord", { failureRedirect: "/" }), (req, res) => { res.redirect("/debug"); });
+	WebApp.get("/", Passport.authenticate("discord", {scope: SCOPES}), (req, res) => {});
+	WebApp.get("/callback", Passport.authenticate("discord", {failureRedirect: "/"}), (req, res) => {
+		res.redirect("/debug");
+	});
 
 	WebApp.get("/logout", (req, res) => {
 		req.logout();
@@ -39,7 +41,7 @@ exports.init = (client) => {
 	});
 
 	WebApp.listen(5000, (err) => {
-		if(err) return client.emit("error", err);
+		if(err) return client.emit("log", err, "error");
 		return client.emit("log", `Listening on ${Config.callbackURL}`);
 	});
 };
