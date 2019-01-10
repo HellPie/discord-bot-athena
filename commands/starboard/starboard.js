@@ -37,7 +37,7 @@ exports.run = async (client, msg, [channel, minStars, timeoutMinutes]) => {
 	if(!client.schemaManager.schema.timeoutMinutes) {
 		client.schemaManager.add(
 			"timeoutMinutes",
-			{type: "Integer", default: 30, min: 5, max: 86400},
+			{type: "Integer", default: 30, min: 5, max: 86400}, // 86400s => 24h
 			true
 		);
 	}
@@ -47,7 +47,12 @@ exports.run = async (client, msg, [channel, minStars, timeoutMinutes]) => {
 
 	if(!client.settingGateway.get(msg.guild)) client.settingGateway.create(msg.guild);
 
-	//await client.settingGateway.update(msg.guild, {starboardChannel: channel});
+	// await client.settingGateway.update(msg.guild, "starboardChannel", channel)
+	await client.settingGateway.update(msg.guild, {starboardChannel: channel})
+	.catch((err) => {
+		client.emit("log", err, "error");
+		return msg.sendMessage("❌ - Invalid `channel` specified. No starboard configured.");
+	});
 
 	await client.settingGateway.update(msg.guild, {starsThreshold: minStars})
 	.catch((err) => {

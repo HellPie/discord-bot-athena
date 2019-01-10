@@ -27,10 +27,10 @@
 	"dependencies": {
 		"common-tags": "^1.4.0",
 		"express": "^4.15.3",
-		"express-session": "^1.15.3",
-		"komada": "github:dirigeants/komada#indev",
+		"express-session": "^1.15.5",
+		"komada": "github:dirigeants/komada",
 		"passport": "^0.3.2",
 		"passport-discord": "^0.1.2",
-		"uws": "^8.14.0"
+		"uws": "^8.14.1"
 	}
 }
